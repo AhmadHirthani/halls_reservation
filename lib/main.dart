@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 //void main() => runApp(hallsPage());
 void main() => runApp(loginPage());
@@ -32,7 +31,7 @@ class loginPage extends StatelessWidget {
                                 fontSize: 30.0,
                                 color: Colors.red,
                                 fontWeight: FontWeight.w200,
-                                fontFamily: "Roboto",
+                                fontFamily: "Cairo-Black",
                               ))),
                       new Padding(padding: const EdgeInsets.all(10),
                           child: new Text(
@@ -42,7 +41,7 @@ class loginPage extends StatelessWidget {
                               fontSize: 16.0,
                               color: Colors.black,
                               fontWeight: FontWeight.w200,
-                              fontFamily: "Roboto",
+                              fontFamily: "Cairo-Light",
                             ),
                           )),
                       //here
