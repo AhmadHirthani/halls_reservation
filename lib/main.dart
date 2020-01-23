@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:google_fonts_arabic/fonts.dart';
 
 //void main() => runApp(hallsPage());
 void main() => runApp(loginPage());
@@ -31,7 +32,7 @@ class loginPage extends StatelessWidget {
                                 fontSize: 30.0,
                                 color: Colors.red,
                                 fontWeight: FontWeight.w200,
-                                fontFamily: "Cairo-Black",
+                                fontFamily: "Cairo",
                               ))),
                       new Padding(padding: const EdgeInsets.all(10),
                           child: new Text(
@@ -41,7 +42,7 @@ class loginPage extends StatelessWidget {
                               fontSize: 16.0,
                               color: Colors.black,
                               fontWeight: FontWeight.w200,
-                              fontFamily: "Cairo-Light",
+                              fontFamily: "Cairo",
                             ),
                           )),
                       //here
@@ -68,7 +69,7 @@ class loginPage extends StatelessWidget {
                                   color: Colors.black,
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.w200,
-                                  fontFamily: "Roboto"))),
+                                  fontFamily: "Amiri"))),
                       new Container(
                           width: 300,
                           height: 55,
@@ -88,7 +89,7 @@ class loginPage extends StatelessWidget {
                               style: new TextStyle(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.w200,
-                                  fontFamily: "Roboto"))),
+                                  fontFamily: "Amiri"))),
                       new Container(
                           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                           child: new RaisedButton(
@@ -102,7 +103,7 @@ class loginPage extends StatelessWidget {
                                       fontSize: 25.0,
                                       color: Colors.amberAccent,
                                       fontWeight: FontWeight.w200,
-                                      fontFamily: "Roboto")))),
+                                      fontFamily: "Cairo")))),
                       new Container(
                           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                           child: new Text(
