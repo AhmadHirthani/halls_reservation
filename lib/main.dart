@@ -251,6 +251,7 @@ class _searchPageState extends State<searchPage> {
 
     });
   }
+  List<String> governorateList=['gaza','northgaza'];
   @override
   Widget build(BuildContext context) {
     var governorateSelectedValue='gaza';
@@ -356,7 +357,8 @@ class _searchPageState extends State<searchPage> {
                         child: Center(
                           child: DropdownButton<String>(
                             value: governorateSelectedValue,
-                            items: [
+                            items:
+                            [
                             DropdownMenuItem(value: 'gaza', child: Text("غزة")),
                             DropdownMenuItem(value: 'northGaza', child: Text("شمال غزة")),
                             DropdownMenuItem(value: 'rafah', child: Text("رفح")),
