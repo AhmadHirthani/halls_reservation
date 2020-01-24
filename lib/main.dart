@@ -192,21 +192,44 @@ class searchPage extends StatefulWidget {
 }
 
 class _searchPageState extends State<searchPage> {
-  final hallNameController=new TextEditingController();
-  final priceController=new TextEditingController();
-  final governorateController=new TextEditingController();
-  final cityController=new TextEditingController();
-  final dateFromController=new TextEditingController();
-  final dateToController=new TextEditingController();
-  final timeController=new TextEditingController();
+  String fromDate="";
+  String toDate="";
 
+  DateTime _date =DateTime.now();
+  Future<Null> selectFromDate(BuildContext context) async{
+    final DateTime picked =await showDatePicker(
+        context: context,
+        initialDate: _date,
+        firstDate: DateTime(2020),
+        lastDate: DateTime(2030),);
+    if(picked!=null && picked != _date){
+      print(_date.toString());
+      setState(() {
+        fromDate=picked.toString();
+      });
+    }
+  }
 
-
-
-
-
-
-
+  Future<Null> selectToDate(BuildContext context) async{
+    final DateTime picked =await showDatePicker(
+      context: context,
+      initialDate: _date,
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),);
+    if(picked!=null && picked != _date){
+      print(_date.toString());
+      setState(() {
+        toDate=picked.toString();
+      });
+    }
+  }
+//  final hallNameController=new TextEditingController();
+//  final priceController=new TextEditingController();
+//  final governorateController=new TextEditingController();
+//  final cityController=new TextEditingController();
+//  final dateFromController=new TextEditingController();
+//  final dateToController=new TextEditingController();
+//  final timeController=new TextEditingController();
 
 
 
@@ -217,19 +240,23 @@ class _searchPageState extends State<searchPage> {
   var result="";
   void readInputs() {
     setState(() {
-      var hallNameEntry=hallNameController.text;
-      var priceEntry=  priceController.text;
-      var cityEntry=cityController.text;
-      var dateFromEntry=dateFromController.text;
-      var dateToEntry=dateToController.text;
-      var timeEntry=timeController.text;
-      var governorateEntry=governorateController.text;
+      var hallNameEntry="";
+      var priceEntry=  "";
+      var cityEntry="";
+      var dateFromEntry="";
+      var dateToEntry="";
+      var timeEntry="";
+      var governorateEntry="";
       result="$hallNameEntry $priceEntry";
 
     });
   }
   @override
   Widget build(BuildContext context) {
+    var governorateSelectedValue='gaza';
+    var timeSelectedValue='am';
+
+
     return new Scaffold(
         backgroundColor: Colors.pink[100],
         appBar: new AppBar(
@@ -273,7 +300,7 @@ class _searchPageState extends State<searchPage> {
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: new TextField(controller: hallNameController,
+                          child: new TextField(
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                   border: InputBorder.none, hintText: 'اسم الصالة'),
@@ -293,7 +320,7 @@ class _searchPageState extends State<searchPage> {
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: new TextField(controller: priceController,
+                          child: new TextField(
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                   border: InputBorder.none, hintText: 'السعر '),
@@ -326,14 +353,26 @@ class _searchPageState extends State<searchPage> {
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: new DropdownButton<String>(
-                          items: <String>[' غزة', 'شمال غزة',' رفح', 'خانيونس',' الوسطى'].map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {},
+                        child: Center(
+                          child: DropdownButton<String>(
+                            value: governorateSelectedValue,
+                            items: [
+                            DropdownMenuItem(value: 'gaza', child: Text("غزة")),
+                            DropdownMenuItem(value: 'northGaza', child: Text("شمال غزة")),
+                            DropdownMenuItem(value: 'rafah', child: Text("رفح")),
+                            DropdownMenuItem(value: 'khanyonis', child: Text("خانيونس")),
+                            DropdownMenuItem(value: 'wosta', child: Text("الوسطى")),
+                            ],
+                            onChanged: (v) {
+
+                              setState(() {
+                                governorateSelectedValue=v;
+
+
+                              });
+                              print(governorateSelectedValue);
+                            },
+                          ),
                         ),
                       ),
                       new Container(
@@ -347,7 +386,7 @@ class _searchPageState extends State<searchPage> {
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: new TextField(controller: priceController,
+                        child: new TextField(
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: 'المدينة '),
@@ -356,6 +395,18 @@ class _searchPageState extends State<searchPage> {
                                 fontWeight: FontWeight.w200,
                                 fontFamily: "Amiri")),
                       ),
+                      new Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: new Text(
+                            "بداية التاريخ",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w200,
+                              fontFamily: "Amiri",
+                            ),
+                          )),
                       new Container(
                         width: 300,
                         height: 55,
@@ -367,15 +418,33 @@ class _searchPageState extends State<searchPage> {
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: new TextField(controller: priceController,
+                        child: new TextField(
+                            onTap:(){selectFromDate(context);} ,
+
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
-                                border: InputBorder.none, hintText: 'بداية التاريخ '),
+                                border: InputBorder.none,
+                              //labelText: fromDate.toString() ,
+                              hintText: fromDate,
+                                ),
+
                             style: new TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.w200,
                                 fontFamily: "Amiri")),
                       ),
+                      new Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: new Text(
+                            "نهاية التاريخ",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w200,
+                              fontFamily: "Amiri",
+                            ),
+                          )),
                       new Container(
                         width: 300,
                         height: 55,
@@ -387,35 +456,33 @@ class _searchPageState extends State<searchPage> {
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: new TextField(controller: priceController,
+                        child: new TextField(
+                            onTap:(){selectToDate(context);} ,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
-                                border: InputBorder.none, hintText: 'نهاية التاريخ '),
+                              border: InputBorder.none,
+                              //labelText: toDate.toString() ,
+                              hintText: toDate,
+                            ),
+
                             style: new TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.w200,
                                 fontFamily: "Amiri")),
                       ),
-                      new Container(
-                        width: 300,
-                        height: 55,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: Colors.black26,
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: new TextField(controller: priceController,
+
+                      new Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: new Text(
+                            "الفترة",
                             textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                border: InputBorder.none, hintText: 'الفترة '),
                             style: new TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w200,
-                                fontFamily: "Amiri")),
-                      ),
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w200,
+                              fontFamily: "Amiri",
+                            ),
+                          )),
                       new Container(
                         width: 300,
                         height: 55,
@@ -427,15 +494,27 @@ class _searchPageState extends State<searchPage> {
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: new DropdownButton<String>(
-                          items: <String>['الفترة الصباحية', 'الفترة المسائية'].map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {},
-                        ),
+                          child: Center(
+                            child: DropdownButton<String>(
+                              value: timeSelectedValue,
+                              items: [
+                                DropdownMenuItem(value: 'am', child: Text("الفترة الصباحية")),
+                                DropdownMenuItem(value: 'pm', child: Text("الفترة المسائية ")),
+
+                              ],
+                              onChanged: (v) {
+
+                                setState(() {
+                                  timeSelectedValue=v;
+
+
+                                });
+                                print(timeSelectedValue);
+                              },
+                            ),
+                          ),
+
+
                       ),
                       new Container(
                           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
