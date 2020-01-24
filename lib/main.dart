@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
-
-
+//void main() => runApp(hallsPage());
 void main() => runApp(loginPage());
-
-
 
 class loginPage extends StatelessWidget {
   String userName;
@@ -128,8 +125,6 @@ bool checkUserAndPassword(String userName,String password){
   }
   else return false;
 }
-
-
 
 
 class hallsPage extends StatelessWidget {
