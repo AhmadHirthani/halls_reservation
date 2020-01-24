@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 void main() {
   // debugPaintSizeEnabled = true;
   runApp(new MaterialApp(
-    home: loginPage(),
+    home: searchPage(),
   ));
 }
 
@@ -138,7 +138,8 @@ class _loginPageState extends State<loginPage> {
                           ))
                     ])),
           ),
-        ));
+        )
+    );
   }
 
 
@@ -185,3 +186,286 @@ class hallsPage extends StatelessWidget {
     );
   }
 }
+class searchPage extends StatefulWidget {
+  @override
+  _searchPageState createState() => _searchPageState();
+}
+
+class _searchPageState extends State<searchPage> {
+  final hallNameController=new TextEditingController();
+  final priceController=new TextEditingController();
+  final governorateController=new TextEditingController();
+  final cityController=new TextEditingController();
+  final dateFromController=new TextEditingController();
+  final dateToController=new TextEditingController();
+  final timeController=new TextEditingController();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var result="";
+  void readInputs() {
+    setState(() {
+      var hallNameEntry=hallNameController.text;
+      var priceEntry=  priceController.text;
+      var cityEntry=cityController.text;
+      var dateFromEntry=dateFromController.text;
+      var dateToEntry=dateToController.text;
+      var timeEntry=timeController.text;
+      var governorateEntry=governorateController.text;
+      result="$hallNameEntry $priceEntry";
+
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        backgroundColor: Colors.pink[100],
+        appBar: new AppBar(
+          title: new Text("قاعة اون لاين"),
+        ),
+        body: SingleChildScrollView(
+          child: ConstrainedBox(constraints: BoxConstraints(),
+            child: new Center(
+                child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      new Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: new Icon(Icons.search,
+                            size: 60, color: Colors.greenAccent),
+                      ),
+
+
+                      new Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: new Text(
+                            "قم بتعبئة حقل او اكثر للبدء بعملية البحث",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w200,
+                              fontFamily: "Cairo",
+                            ),
+                          )),
+                      //here
+
+                      new Container(
+                          width: 300,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black26,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: new TextField(controller: hallNameController,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none, hintText: 'اسم الصالة'),
+                              style: new TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w200,
+                                  fontFamily: "Amiri"))),
+                      new Container(
+                          width: 300,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black26,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: new TextField(controller: priceController,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none, hintText: 'السعر '),
+                              style: new TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w200,
+                                  fontFamily: "Amiri")),
+                      ),
+                      new Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: new Text(
+                            "المحافظة",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w200,
+                              fontFamily: "Amiri",
+                            ),
+                          )),
+
+                      new Container(
+                        width: 300,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: new DropdownButton<String>(
+                          items: <String>[' غزة', 'شمال غزة',' رفح', 'خانيونس',' الوسطى'].map((String value) {
+                            return new DropdownMenuItem<String>(
+                              value: value,
+                              child: new Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (_) {},
+                        ),
+                      ),
+                      new Container(
+                        width: 300,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: new TextField(controller: priceController,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                border: InputBorder.none, hintText: 'المدينة '),
+                            style: new TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w200,
+                                fontFamily: "Amiri")),
+                      ),
+                      new Container(
+                        width: 300,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: new TextField(controller: priceController,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                border: InputBorder.none, hintText: 'بداية التاريخ '),
+                            style: new TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w200,
+                                fontFamily: "Amiri")),
+                      ),
+                      new Container(
+                        width: 300,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: new TextField(controller: priceController,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                border: InputBorder.none, hintText: 'نهاية التاريخ '),
+                            style: new TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w200,
+                                fontFamily: "Amiri")),
+                      ),
+                      new Container(
+                        width: 300,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: new TextField(controller: priceController,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                border: InputBorder.none, hintText: 'الفترة '),
+                            style: new TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w200,
+                                fontFamily: "Amiri")),
+                      ),
+                      new Container(
+                        width: 300,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: new DropdownButton<String>(
+                          items: <String>['الفترة الصباحية', 'الفترة المسائية'].map((String value) {
+                            return new DropdownMenuItem<String>(
+                              value: value,
+                              child: new Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (_) {},
+                        ),
+                      ),
+                      new Container(
+                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          child: new RaisedButton(onPressed: readInputs ,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(40.0)),
+                              key: null,
+                              color: Colors.tealAccent,
+                              child: new Text("بحث",
+                                  style: new TextStyle(
+                                      fontSize: 25.0,
+                                      color: Colors.amberAccent,
+                                      fontWeight: FontWeight.w200,
+                                      fontFamily: "Cairo")))),
+                      new Container(
+                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          child: new Text(result,
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                              color: const Color(0xFFd71a1a),
+                              fontWeight: FontWeight.w200,
+                              fontFamily: "Roboto",
+                            ),
+                          ))
+                    ])),
+          ),
+        )
+    );
+  }
+}
+
+
