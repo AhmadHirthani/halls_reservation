@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'mainPage.dart';
-
-//import 'package:google_fonts_arabic/fonts.dart';
-
+import 'package:halls_reservation/screens/auth/sign_in.dart';
 void main() {
   // debugPaintSizeEnabled = true;
   runApp(new MaterialApp(
-    home: mainPage(),
+//    home: mainPage(),
+    home: SignIn(),
   ));
 }
 

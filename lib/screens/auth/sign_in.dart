@@ -22,7 +22,13 @@ class _SignInState extends State<SignIn> {
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50),
             child: RaisedButton(
                 child: Text('Sign In Anon'), onPressed: () async {
-
+                        dynamic result =  await _auth.signInAnnon();
+                        if (result == null ){
+                          print("error signing in");
+                        }else{
+                          print("signed In");
+                          print(result) ;
+                        }
             })));
   }
 }
