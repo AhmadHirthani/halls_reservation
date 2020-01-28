@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'mainPage.dart';
 import 'package:halls_reservation/screens/auth/sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'models/FirebaseServices.dart';
+
+
 void main() {
   // debugPaintSizeEnabled = true;
   runApp(new MaterialApp(
 //    home: mainPage(),
-    home: SignIn(),
+//    home: SignIn(),
+    home: HallsPage(),
+//    home: hallsPage(),
   ));
 }
 
@@ -22,6 +27,7 @@ class _loginPageState extends State<loginPage> {
   var password = "";
   var result = "";
 
+
   void readInputs() {
     setState(() {
       result = "";
@@ -29,7 +35,8 @@ class _loginPageState extends State<loginPage> {
       var passwordEntry = passwordController.text;
       if ((userNameEntry == "admin") && (passwordEntry == "admin")) {
         Navigator.push(context,
-            new MaterialPageRoute(builder: (context) => new hallsPage()));
+//            new MaterialPageRoute(builder: (context) => new hallsPage()));
+            new MaterialPageRoute(builder: (context) => new HallsPage()));
         result = "OK. Wellcome $result $userNameEntry";
       } else {
         result = "Sorry. Wrong User Name or Password";
@@ -145,20 +152,59 @@ class _loginPageState extends State<loginPage> {
         ));
   }
 }
+//
+//class hallsPage extends StatelessWidget {
+////  final hallsList = [ 'صالة مزايا','صالة الفريد','صالة الحلو','صالة بغداد','صالة الجزيرة', 'صالة الحرية','صالة النورس','بلس لايف','قصر الورود'];
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//      debugShowCheckedModeBanner: false,
+//      title: 'قائمة الصالات',
+//      theme: ThemeData(
+//        primarySwatch: Colors.teal,
+//      ),
+//      home: Scaffold(
+//        appBar: AppBar(title: Text('قائمة الصالات')),
+//        body: ListView.builder(
+//          itemCount: hallsList.length,
+//          itemBuilder: (context, index) {
+//            return ListTile(
+//              title: Text(
+//                hallsList[index],
+//                style: new TextStyle(fontSize: 25, color: Colors.lightGreen),
+//              ),
+//            );
+//          },
+//        ),
+//      ),
+//    );
+//  }
+//}
 
-class hallsPage extends StatelessWidget {
-  final hallsList = [
-    'صالة مزايا',
-    'صالة الفريد',
-    'صالة الحلو',
-    'صالة بغداد',
-    'صالة الجزيرة',
-    'صالة الحرية',
-    'صالة النورس',
-    'بلس لايف',
-    'قصر الورود'
-  ];
+class HallsList extends StatelessWidget {
+  final  stream =  Firestore.instance.collection("halls").getDocuments().asStream();
 
+  @override
+  Widget build(BuildContext context) {
+    return new StreamBuilder(
+      stream: stream ,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (!snapshot.hasData) return new Text('Loading...');
+        return new ListView(
+          children: snapshot.data.documents.map((document) {
+            return new ListTile(
+              title: new Text(document['hall_id']),
+              subtitle: new Text(document['hall_name']),
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+}
+
+class HallsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -169,21 +215,9 @@ class hallsPage extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: Text('قائمة الصالات')),
-        body: ListView.builder(
-          itemCount: hallsList.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(
-                hallsList[index],
-                style: new TextStyle(fontSize: 25, color: Colors.lightGreen),
-              ),
-            );
-          },
-        ),
+        body:
+        HallsList(),
       ),
     );
   }
 }
-
-
-
