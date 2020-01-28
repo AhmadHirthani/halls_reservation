@@ -306,15 +306,7 @@ class _homePageState extends State<homePage>
                                     builder: (context) => new hallsPage()));
                           },
                           child: new Text("Halls Page")),
-                          new RaisedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-//            new MaterialPageRoute(builder: (context) => new hallsPage()));
-                                    new MaterialPageRoute(
-                                        builder: (context) => new searchResultPage()));
-                              },
-                              child: new Text("Results Page"))
+
                     ])),
               ),
             )
@@ -326,7 +318,12 @@ class _homePageState extends State<homePage>
     return Container(
         padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: RaisedButton(
-            onPressed: readInputs,
+            onPressed: (){ Navigator.push(
+                context,
+//            new MaterialPageRoute(builder: (context) => new hallsPage()));
+                new MaterialPageRoute(
+                    builder: (context) => new searchResultPage()));
+            },
             shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(40.0)),
             key: null,
