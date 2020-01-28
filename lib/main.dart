@@ -100,6 +100,7 @@ class _loginPageState extends State<loginPage> {
                               fontSize: 20.0,
                               fontWeight: FontWeight.w200,
                               fontFamily: "Amiri"))),
+
                   new Container(
                       width: 300,
                       height: 55,
