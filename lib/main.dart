@@ -6,10 +6,9 @@ import 'models/FirebaseServices.dart';
 void main() {
   // debugPaintSizeEnabled = true;
   runApp(new MaterialApp(
-    home:  homePage(),
-      //    home: SignIn(),
+    home: homePage(),
+    //    home: SignIn(),
     //  home: HallsPage(),
 //    home: hallsPage(),
-  )
-  );
+  ));
 }

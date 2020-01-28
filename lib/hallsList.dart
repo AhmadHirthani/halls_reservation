@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class hallsList extends StatelessWidget {
-  final  stream =  Firestore.instance.collection("halls").getDocuments().asStream();
+  final stream =
+      Firestore.instance.collection("halls").getDocuments().asStream();
 
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder(
-      stream: stream ,
+      stream: stream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) return new Text('Loading...');
         return new ListView(
@@ -34,8 +35,7 @@ class hallsPage extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: Text('قائمة الصالات')),
-        body:
-        hallsList(),
+        body: hallsList(),
       ),
     );
   }

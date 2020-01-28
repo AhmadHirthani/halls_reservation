@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class detailedSearchResultPage extends StatefulWidget {
   @override
-  _detailedSearchResultPageState createState() => _detailedSearchResultPageState();
+  _detailedSearchResultPageState createState() =>
+      _detailedSearchResultPageState();
 }
 
 class _detailedSearchResultPageState extends State<detailedSearchResultPage> {
@@ -14,18 +15,17 @@ class _detailedSearchResultPageState extends State<detailedSearchResultPage> {
       ),
       body: SingleChildScrollView(
           child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-              //String hallName,String hallPrice, String services,String imageName
-              detailedOneSearchResult("صالة مزايا", "1000", "wi fi", "mzaya"),
-
-            ],
-          )),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          //String hallName,String hallPrice, String services,String imageName
+          detailedOneSearchResult("صالة مزايا", "1000", "wi fi", "mzaya"),
+        ],
+      )),
     );
   }
-  Card detailedOneSearchResult(String hallName, String hallPrice, String services, String imageName) {
 
+  Card detailedOneSearchResult(
+      String hallName, String hallPrice, String services, String imageName) {
     return Card(
       child: new Column(
         children: <Widget>[
@@ -61,15 +61,6 @@ class _detailedSearchResultPageState extends State<detailedSearchResultPage> {
           )
         ],
       ),
-
-
     );
-
   }
-
-
-
-
 }
-
-

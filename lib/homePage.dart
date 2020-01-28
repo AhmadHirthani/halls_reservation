@@ -1,14 +1,8 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:halls_reservation/searchResultPage.dart';
 import 'package:halls_reservation/hallsList.dart';
 import 'package:intl/intl.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
-
-
 
 class homePage extends StatefulWidget {
   @override
@@ -162,8 +156,6 @@ class _homePageState extends State<homePage>
                           )),
                       //here
 
-
-
                       new Container(
                         width: 300,
                         height: 55,
@@ -306,7 +298,6 @@ class _homePageState extends State<homePage>
                                     builder: (context) => new hallsPage()));
                           },
                           child: new Text("Halls Page")),
-
                     ])),
               ),
             )
@@ -318,11 +309,12 @@ class _homePageState extends State<homePage>
     return Container(
         padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: RaisedButton(
-            onPressed: (){ Navigator.push(
-                context,
+            onPressed: () {
+              Navigator.push(
+                  context,
 //            new MaterialPageRoute(builder: (context) => new hallsPage()));
-                new MaterialPageRoute(
-                    builder: (context) => new searchResultPage()));
+                  new MaterialPageRoute(
+                      builder: (context) => new searchResultPage()));
             },
             shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(40.0)),
