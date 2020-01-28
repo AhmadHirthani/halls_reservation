@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:halls_reservation/screens/auth/sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'models/FirebaseServices.dart';
-
+import 'mainPage.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
   runApp(new MaterialApp(
-//    home: mainPage(),
+    home: mainPage(),
 //    home: SignIn(),
-    home: HallsPage(),
+//    home: HallsPage(),
 //    home: hallsPage(),
   ));
 }
@@ -183,19 +183,17 @@ class _loginPageState extends State<loginPage> {
 //}
 
 class HallsList extends StatelessWidget {
-  final  stream =  Firestore.instance.collection("halls").getDocuments().asStream();
-
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder(
-      stream: stream ,
+      stream: Firestore.instance.collection("halls").getDocuments().asStream() ,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) return new Text('Loading...');
         return new ListView(
           children: snapshot.data.documents.map((document) {
             return new ListTile(
-              title: new Text(document['hall_id']),
-              subtitle: new Text(document['hall_name']),
+              title: new Text(document['hall_name']),
+              subtitle: new Text(document['hall_id']),
             );
           }).toList(),
         );
