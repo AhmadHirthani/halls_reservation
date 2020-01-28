@@ -153,35 +153,6 @@ class _loginPageState extends State<loginPage> {
         ));
   }
 }
-//
-//class hallsPage extends StatelessWidget {
-////  final hallsList = [ 'صالة مزايا','صالة الفريد','صالة الحلو','صالة بغداد','صالة الجزيرة', 'صالة الحرية','صالة النورس','بلس لايف','قصر الورود'];
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return MaterialApp(
-//      debugShowCheckedModeBanner: false,
-//      title: 'قائمة الصالات',
-//      theme: ThemeData(
-//        primarySwatch: Colors.teal,
-//      ),
-//      home: Scaffold(
-//        appBar: AppBar(title: Text('قائمة الصالات')),
-//        body: ListView.builder(
-//          itemCount: hallsList.length,
-//          itemBuilder: (context, index) {
-//            return ListTile(
-//              title: Text(
-//                hallsList[index],
-//                style: new TextStyle(fontSize: 25, color: Colors.lightGreen),
-//              ),
-//            );
-//          },
-//        ),
-//      ),
-//    );
-//  }
-//}
 
 
 
