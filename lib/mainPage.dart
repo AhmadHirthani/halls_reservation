@@ -114,7 +114,7 @@ class _mainPageState extends State<mainPage>
                       new Padding(
                         padding: const EdgeInsets.all(5),
                         child: new Icon(Icons.search,
-                            size: 60, color: Colors.greenAccent),
+                            size: 60, color: Colors.blue[900]),
                       ),
 
                       new Padding(
