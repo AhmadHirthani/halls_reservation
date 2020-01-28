@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:halls_reservation/screens/auth/sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'models/FirebaseServices.dart';
+import 'hallsList.dart';
 import 'mainPage.dart';
+import 'models/FirebaseServices.dart';
+
 
 void main() {
   // debugPaintSizeEnabled = true;
   runApp(new MaterialApp(
     home: mainPage(),
 //    home: SignIn(),
-//    home: HallsPage(),
+  //  home: HallsPage(),
 //    home: hallsPage(),
   ));
 }
@@ -34,9 +36,7 @@ class _loginPageState extends State<loginPage> {
       var userNameEntry = userNameController.text;
       var passwordEntry = passwordController.text;
       if ((userNameEntry == "admin") && (passwordEntry == "admin")) {
-        Navigator.push(context,
-//            new MaterialPageRoute(builder: (context) => new hallsPage()));
-            new MaterialPageRoute(builder: (context) => new HallsPage()));
+
         result = "OK. Wellcome $result $userNameEntry";
       } else {
         result = "Sorry. Wrong User Name or Password";
@@ -182,40 +182,5 @@ class _loginPageState extends State<loginPage> {
 //  }
 //}
 
-class HallsList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new StreamBuilder(
-      stream: Firestore.instance.collection("halls").getDocuments().asStream() ,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (!snapshot.hasData) return new Text('Loading...');
-        return new ListView(
-          children: snapshot.data.documents.map((document) {
-            return new ListTile(
-              title: new Text(document['hall_name']),
-              subtitle: new Text(document['hall_id']),
-            );
-          }).toList(),
-        );
-      },
-    );
-  }
-}
 
-class HallsPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'قائمة الصالات',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('قائمة الصالات')),
-        body:
-        HallsList(),
-      ),
-    );
-  }
-}
+
