@@ -49,7 +49,7 @@ class _loginPageState extends State<loginPage> {
     return new Scaffold(
         backgroundColor: Colors.pink[100],
         appBar: new AppBar(
-          title: new Text(" قاعة اون  لاين "),
+          title: new Text(" قاعة اون لاين "),
         ),
         body: SingleChildScrollView(
           child: ConstrainedBox(
