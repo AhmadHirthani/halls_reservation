@@ -1,25 +1,21 @@
+
+
+
+
 import 'package:flutter/material.dart';
-import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
-import 'dart:async';
+import 'package:halls_reservation/searchResultPage.dart';
+import 'package:halls_reservation/hallsList.dart';
 import 'package:intl/intl.dart';
+import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 
-import 'hallsList.dart';
 
-//import 'package:google_fonts_arabic/fonts.dart';
 
-void main() {
-  // debugPaintSizeEnabled = true;
-  runApp(new MaterialApp(
-    home: mainPage(),
-  ));
-}
-
-class mainPage extends StatefulWidget {
+class homePage extends StatefulWidget {
   @override
-  _mainPageState createState() => _mainPageState();
+  _homePageState createState() => _homePageState();
 }
 
-class _mainPageState extends State<mainPage>
+class _homePageState extends State<homePage>
     with SingleTickerProviderStateMixin {
   var governorateSelectedValue = 'gaza';
   var timeSelectedValue = 'pm';
@@ -166,7 +162,7 @@ class _mainPageState extends State<mainPage>
                           )),
                       //here
 
-                      hallNameDropDownList(),
+
 
                       new Container(
                         width: 300,
@@ -307,9 +303,18 @@ class _mainPageState extends State<mainPage>
                                 context,
 //            new MaterialPageRoute(builder: (context) => new hallsPage()));
                                 new MaterialPageRoute(
-                                    builder: (context) => new HallsPage()));
+                                    builder: (context) => new hallsPage()));
                           },
-                          child: new Text("Halls Page"))
+                          child: new Text("Halls Page")),
+                          new RaisedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+//            new MaterialPageRoute(builder: (context) => new hallsPage()));
+                                    new MaterialPageRoute(
+                                        builder: (context) => new searchResultPage()));
+                              },
+                              child: new Text("Results Page"))
                     ])),
               ),
             )

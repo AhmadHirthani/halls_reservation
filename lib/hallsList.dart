@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class HallsList extends StatelessWidget {
+class hallsList extends StatelessWidget {
   final  stream =  Firestore.instance.collection("halls").getDocuments().asStream();
 
   @override
@@ -23,7 +23,7 @@ class HallsList extends StatelessWidget {
   }
 }
 
-class HallsPage extends StatelessWidget {
+class hallsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +35,7 @@ class HallsPage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: Text('قائمة الصالات')),
         body:
-        HallsList(),
+        hallsList(),
       ),
     );
   }
