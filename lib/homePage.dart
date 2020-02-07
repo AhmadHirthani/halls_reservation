@@ -4,7 +4,11 @@ import 'package:halls_reservation/hallsList.dart';
 import 'package:intl/intl.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 
+import 'loginPage.dart';
+
 class homePage extends StatefulWidget {
+  get myDrawer => null;
+
   @override
   _homePageState createState() => _homePageState();
 }
@@ -83,7 +87,8 @@ class _homePageState extends State<homePage>
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        backgroundColor: Colors.pink[100],
+        backgroundColor: Colors.amberAccent,
+        drawer: myDrawer(),
         appBar: new AppBar(
           bottom: TabBar(controller: tabController, tabs: [
             Text("بحث سريع"),
@@ -422,4 +427,75 @@ class _homePageState extends State<homePage>
       ],
     );
   }
+
+  myDrawer() {
+
+    return new Drawer(
+      child: new ListView(
+        children: <Widget>[
+          new DrawerHeader(child: new Icon(Icons.android, size: 50)),
+          new ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new homePage()));
+            },
+            leading: new Icon(Icons.account_balance),
+            title: new Text("الصفحة الرئيسية"),
+            subtitle: new Text(" "),
+          ),
+          new ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new hallsPage()));
+            },
+            leading: new Icon(Icons.search),
+            title: new Text("بحث سريع"),
+            subtitle: new Text("البحث باستخدام اسم الصالة والتاريخ"),
+          ),
+          new ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new hallsPage()));
+            },
+            leading: new Icon(Icons.edit),
+            title: new Text("بحث متقدم"),
+            subtitle: new Text("بحث يلائم احتياجاتك"),
+          ),
+          new ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new hallsPage()));
+            },
+            leading: new Icon(Icons.list),
+            title: new Text("قائمة الصالات"),
+            subtitle: new Text(""),
+          ),
+          new ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new LoginPage()));
+            },
+            leading: new Icon(Icons.local_taxi),
+            title: new Text("تسجيل الدخول"),
+            subtitle: new Text("الحصول على حساب مجاني بخطوات سهلة"),
+          )
+        ],
+      ),
+    );
+
+
+
+  }
+
+
 }
